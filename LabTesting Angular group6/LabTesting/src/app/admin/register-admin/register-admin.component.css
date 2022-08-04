@@ -1,0 +1,103 @@
+/* *{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+
+}
+
+section{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 110px 100px;
+    margin-bottom: .1vh;
+}
+
+
+
+.userRegistration{
+    position: relative;
+    justify-content: center;
+    min-height: 10vh;
+    background-color: beige;
+    text-align: center;
+    color:aliceblue;
+    display: flex;
+}
+
+.userRegistration .reg-card{
+    width: 400px;
+    height: 60vh;
+    padding-top: 10px;
+    padding-bottom: 10%;
+    margin-bottom: 10%;
+    border: #000 solid 2px;
+    border-radius: 5%;
+    background-color: rgb(174, 206, 216);
+    
+    
+    
+
+} */
+
+
+
+.example-card {
+    display: flex;
+    flex-flow: column;
+    width: 60%;
+    background-color: bisque;
+    height:500px;
+    justify-content:baseline;
+    align-items: center;
+    border-radius: 5%;
+  }
+  
+
+  
+
+.register-user{
+    position: relative;
+    justify-content:baseline;
+    height: 60vh;
+    color: #fff;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 50px;
+    margin-bottom: 0.1vh;
+    width:100%;
+    
+    
+    
+}
+
+ .register-user .example-card .regAdminForm {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    contain: layout;
+    border:5px solid rgb(29, 29, 17); 
+    background-color:beige;
+    height:50vh;
+    font-size:large;
+    line-height: 10px;
+    width: 550px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5%;
+    
+ 
+}
+
+mat-card-title{
+   text-align: center;
+}

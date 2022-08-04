@@ -2,23 +2,19 @@
 <mat-card class="example-card" >
     <mat-card-header>
       <mat-card-title>Registration Form</mat-card-title>
-      <mat-card-subtitle>Enter your Details</mat-card-subtitle>
+      <mat-card-subtitle style="text-align: center;">Enter your Details</mat-card-subtitle>
     </mat-card-header>
     <form #regform="ngForm"  class="regForm"   (ngSubmit)="getDetails()">
-        <label>Name</label><br><br>
-        <input type="text" #asso_name="ngModel" name="asso_name" [(ngModel)]="name" required><br>
-        <span *ngIf="asso_name.touched  && !asso_name.valid" style="color:red;">Name should not be empty!!</span><br>
-        <label>Email</label><br><br>
-        <input type="text" #asso_email="ngModel"name="asso_email" [(ngModel)]="email" required><br>
-        <span *ngIf="asso_email.touched  && !asso_email.valid" style="color:red;">Email should not be empty!!</span><br><br><br>
-        <label>Address</label><br><br>
-        <textarea cols="23" rows="7" #asso_address="ngModel" name="asso_add" [(ngModel)]="address" required></textarea><br>
-        <span *ngIf="asso_address.touched  && !asso_address.valid" style="color:red;">Address should not be empty!!</span><br><br>
-        <label>Password</label><br><br>
-        <input type="text" #asso_email="ngModel"name="asso_password" [(ngModel)]="password" required><br><br>
-        <!-- <span *ngIf="asso_password.touched  && !asso_password.valid" style="color:red;">passeord should not be empty!!</span><br><br> -->
-    
-        <!-- <button type="submit" [disabled]="!regform.valid">Register</button><br> -->
+      <input type="text" #asso_name="ngModel" name="asso_name" [(ngModel)]="name" required placeholder="Enter Name"><br>
+      <span *ngIf="asso_name.touched  && !asso_name.valid" style="color:red;">Name should not be empty!!</span><br>
+      <textarea cols="21" rows="7" #asso_address="ngModel" name="asso_add" [(ngModel)]="address" required placeholder="Enter Address here"></textarea><br>
+      <span *ngIf="asso_address.touched  && !asso_address.valid" style="color:red;">Address should not be empty!!</span><br>  
+      <input type="text" #asso_email="ngModel"name="asso_email" [(ngModel)]="email" required placeholder="Enter Email here"><br>
+      <span *ngIf="asso_email.touched  && !asso_email.valid" style="color:red;">Email should not be empty!!</span><br>
+      <input type="text" #asso_password="ngModel"name="asso_password" [(ngModel)]="password" required placeholder="Enter Password"><br>
+      <span *ngIf="asso_password.touched  && !asso_password.valid" style="color:red;">password should not be empty!!</span><br>
+      <input type="text" #asso_confirmPassword="ngModel"name="asso_confirmPassword" [(ngModel)]="confirmPassword" required placeholder="Confirm Password"><br>
+      <span *ngIf="asso_confirmPassword.touched  && !asso_confirmPassword.valid" style="color:red;">password should not be empty!!</span><br>
         <button mat-raised-button color="primary">Primary</button>
         
     </form>
