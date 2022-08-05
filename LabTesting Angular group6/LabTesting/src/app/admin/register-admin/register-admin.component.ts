@@ -8,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterAdminComponent implements OnInit {
 
   constructor() { }
+  AdminName:string="";
+  AdminAddress:string="";
+  AdminEmail:string="";
+  gender:string="";
+  AdminPassword:string="";
+  AdminConfirmPassword:string="";
 
   ngOnInit(): void {
+  }
+
+  getAdminDetails(){
+   
+    console.log("function called! "+this.AdminName+" "+this.AdminAddress+" "+this.AdminEmail+" .")
+
   }
 
 }

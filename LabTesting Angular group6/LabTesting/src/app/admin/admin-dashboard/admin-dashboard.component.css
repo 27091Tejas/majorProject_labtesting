@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+
+}
+
+/* .banner-area
+    height:10vh;
+    border:#000 solid 2px;
+    background-color:rgba(83, 223, 192, 0.616) ;
+    color: antiquewhite
+   */
+   .admin_dashboard{
+    position: relative;
+    justify-content: center;
+    min-height: 5vh;
+   background-color:#3f51b5;
+    text-align: center;
+    color:aliceblue;
+    border:#000 solid 2px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -o-flex;
+    display: flex;
+    
+}

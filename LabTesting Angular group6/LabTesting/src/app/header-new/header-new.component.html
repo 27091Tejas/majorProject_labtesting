@@ -4,8 +4,21 @@
         <nav>
             <li><a href="#"><i class="icon-home"> </i>Home</a></li>
             <li><a href="#about"><i class="icon-user"> </i>About</a></li>
-            <li><a href="#services"><i class="icon-gear"> </i>Login</a></li>
-            <li><i class="icon-picture"> </i><a href="/user">Register</a></li>
+            <li>
+                <h4>Login</h4>
+                <mat-select>
+                      <mat-option style="background-color:#3f51b5;text-decoration:none"><a href="/AdminLogin" style="color:#fff;text-decoration:none">Admin Login</a></mat-option>
+                      <mat-option style="background-color:#3f51b5;text-decoration:none"><a href="/UserLogin" style="color:#fff;text-decoration:none">User Login</a></mat-option>
+                </mat-select>            
+            </li>
+            <li>
+                <h4>Register</h4>
+                <mat-select>
+                      <mat-option style="background-color:#3f51b5;text-decoration:none"><a href="/RegAdmin" style="color:#fff;text-decoration:none">Register Admin</a></mat-option>
+                      <mat-option style="background-color:#3f51b5;text-decoration:none"><a href="/RegUser" style="color:#fff;text-decoration:none">Register User</a></mat-option>
+                </mat-select>            
+            </li>
+            
             <li><i class="icon-envelope"> </i><a href="#Contact">Contact</a></li>
         </nav>
     </header>

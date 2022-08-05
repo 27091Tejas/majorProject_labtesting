@@ -1,7 +1,7 @@
 <section class="register-user">
 <mat-card class="example-card" >
     <mat-card-header>
-      <mat-card-title>Registration Form</mat-card-title>
+      <mat-card-title>User Registration Form</mat-card-title>
       <mat-card-subtitle style="text-align: center;">Enter your Details</mat-card-subtitle>
     </mat-card-header>
     <form #regform="ngForm"  class="regForm"   (ngSubmit)="getDetails()">
@@ -15,7 +15,7 @@
       <span *ngIf="asso_password.touched  && !asso_password.valid" style="color:red;">password should not be empty!!</span><br>
       <input type="text" #asso_confirmPassword="ngModel"name="asso_confirmPassword" [(ngModel)]="confirmPassword" required placeholder="Confirm Password"><br>
       <span *ngIf="asso_confirmPassword.touched  && !asso_confirmPassword.valid" style="color:red;">password should not be empty!!</span><br>
-        <button mat-raised-button color="primary">Primary</button>
+        <button mat-raised-button color="primary">Register</button>
         
     </form>
   </mat-card>
