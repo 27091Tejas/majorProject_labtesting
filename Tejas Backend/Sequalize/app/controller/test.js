@@ -3,10 +3,13 @@ const Sequelize = require("sequelize");
 const router = require("express").Router();
 const {response} = require('express');
 
-const sequelize = new Sequelize("mydb","root", "root", {
+const sequelize = new Sequelize("labtest","root", "root1", {
   host: "localhost",
   dialect: "mysql",
 });
+
+
+//User table
 
 const User = sequelize.define("user", {
     id: {
@@ -19,27 +22,56 @@ const User = sequelize.define("user", {
     },    
     email: {
       type: Sequelize.STRING
-    }
+    },
+    contact_no:{
+      type:Sequelize.INTEGER
+    },
+        password:{
+            type: Sequelize.STRING
+        },
+        role:{
+            type: Sequelize.STRING
+        }
     },{timestamps:false});
+       
+  
+    // test table 
+       const Tests = sequelize.define("labtests",
+       {
+        testId:{
+          type: Sequelize.INTEGER,
+          primaryKey:true,
+          autoIncrement:true
+        },
+        testName:{
+          type:Sequelize.STRING
+        },
+        department:{
+          type:Sequelize.STRING
+        },
+        costOfTest:{
+          type:Sequelize.INTEGER
+        }
+       },{timestamps:false});
 
+
+    //appointment table;
     const Appointment = sequelize.define("appointment", {
       appointmentid: {
         type: Sequelize.INTEGER,
         primaryKey:true,
         autoIncrement:true
       },
-      name: {
-        type: Sequelize.STRING
-      },    
+     
+      Appointment_date:{
+          type:Sequelize.DATEONLY           
+      } ,   
       description: {
         type: Sequelize.STRING
       }
       },{timestamps:false});
 
-      User.belongsTo(Appointment,{
-        through:"appointment",
-        as:"appointment",
-        foreignKey:"appointmentId"});
+      
       Appointment.belongsTo(User,
         {
           through:"appointment",
@@ -53,11 +85,27 @@ const User = sequelize.define("user", {
         res.send('welcome');
       });
 
+     
+
+
+
+
+
       //save user
       router.post("/addUser", (req, res) => {
         User.create(req.body).then((response)=>{res.send("user created")})
         .catch((error)=>console.log(error));
       });
+
+
+      //save labtest working
+
+      router.post("/addtest",(req,res)=>{
+        Tests.create(req.body).then((response)=>{res.send("test uploaded")})
+        .catch((error)=>console.log(error));
+      });
+
+
 
       //find all
       router.get("/", (req, res) => {
@@ -65,11 +113,26 @@ const User = sequelize.define("user", {
         .catch((error)=>console.log(error));
       });
 
+
+      //find tests it is not working
+      router.get("/tests/", (req, res) => {
+        Tests.findAll().then((data)=>{res.send(data)})
+        .catch((error)=>console.log(error));
+      });
+
+    
       //find by name
       router.get("/:name", (req, res) => {
         User.findAll({where:{name:req.params.name}}).then((data)=>{res.send(data)})
         .catch((error)=>console.log(error));
       });
+
+       //find by testNAme
+      router.get("/testname/:name", (req, res) => {
+        Tests.findAll({where:{testName:req.params.name}}).then((data)=>{res.send(data)})
+        .catch((error)=>console.log(error));
+      });
+
 
       //find by id
       router.get("/byId/:id", (req, res) => {
@@ -79,7 +142,7 @@ const User = sequelize.define("user", {
 
       //update
       router.put("/update/:id", (req, res) => {
-        User.update(req.body,{where : {id:req.params.id}}).then((data)=>{res.send(data)})
+        User.update(req.body,req.params.id).then((data)=>{res.send(data)})
         .catch((error)=>console.log(error));
       });
       
@@ -90,7 +153,7 @@ const User = sequelize.define("user", {
       });
 
       //custom query
-      router.get("/getUsers", (req, res) => {sequalize.query("select * from userinfos",
+      router.get("/getUsers", (req, res) => {sequalize.query("select * from users",
       {type:sequelize.QueryTypes.SELECT}).then((data)=>{res.send(data)})
       .catch((error)=>console.log(error));})
 
