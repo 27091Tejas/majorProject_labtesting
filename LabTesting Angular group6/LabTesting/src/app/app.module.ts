@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import {HttpClientModule}  from '@angular/common/http'
+import { UserServicesService } from './services/user-services.service';
 
 
 
@@ -32,9 +34,10 @@ import {MatSelectModule} from '@angular/material/select';
     UserModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UserServicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

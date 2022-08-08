@@ -8,13 +8,15 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 
 
 @NgModule({
   declarations: [
     RegisterAdminComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AdminLoginComponent
   ],
   imports: [
     CommonModule,
