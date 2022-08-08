@@ -88,7 +88,7 @@ const User = sequelize.define("user", {
 
 
 
-      //save user
+      //save user working
       router.post("/addUser", (req, res) => {
         User.create(req.body).then((response)=>{res.send("user created")})
         .catch((error)=>console.log(error));
@@ -137,16 +137,33 @@ const User = sequelize.define("user", {
         .catch((error)=>console.log(error));
       });
 
-       //find by testNAme
+       //find by testNAme working
       router.get("/testname/:name", (req, res) => {
         Tests.findAll({where:{testName:req.params.name}}).then((data)=>{res.send(data)})
         .catch((error)=>console.log(error));
       });
 
+      
 
-      //find by id
+
+      //find by id working
       router.get("/byId/:id", (req, res) => {
         User.findByPk(req.params.id).then((data)=>{res.send(data)})
+        .catch((error)=>console.log(error));
+      });
+
+
+      //find by id test working
+      router.get("/bytestId/:id", (req, res) => {
+        Tests.findByPk(req.params.id).then((data)=>{res.send(data)})
+        .catch((error)=>console.log(error));
+      });
+       
+     
+
+      //find by id appointment
+      router.get("/byappoId/:id", (req, res) => {
+        Tests.findByPk(req.params.id).then((data)=>{res.send(data)})
         .catch((error)=>console.log(error));
       });
 
