@@ -2,7 +2,7 @@
 const Sequelize = require("sequelize");
 const router = require("express").Router();
 const {response} = require('express');
-
+const cors = require("cors");
 const sequelize = new Sequelize("labtest","root", "root1", {
   host: "localhost",
   dialect: "mysql",
@@ -44,9 +44,6 @@ const User = sequelize.define("user", {
           autoIncrement:true
         },
         testName:{
-          type:Sequelize.STRING
-        },
-        department:{
           type:Sequelize.STRING
         },
         costOfTest:{
@@ -104,24 +101,37 @@ const User = sequelize.define("user", {
         Tests.create(req.body).then((response)=>{res.send("test uploaded")})
         .catch((error)=>console.log(error));
       });
+           
+      //save appoint working
+      router.post("/appo",(req,res)=>{
+        Appointment.create(req.body).then((response)=>{res.send("appointment booked")})
+        .catch((error)=>console.log(error));
+      });
 
 
 
-      //find all
+      //find all working
       router.get("/", (req, res) => {
         User.findAll().then((data)=>{res.send(data)})
         .catch((error)=>console.log(error));
       });
 
-
-      //find tests it is not working
-      router.get("/tests/", (req, res) => {
+              
+      //find tests it is working
+      router.get("/lab", (req, res) => {
         Tests.findAll().then((data)=>{res.send(data)})
         .catch((error)=>console.log(error));
       });
+      
+      //find appoint ment  Appointment working
 
+      router.get("/appoint", (req, res) => {
+        Appointment.findAll().then((data)=>{res.send(data)})
+        .catch((error)=>console.log(error));
+      });
+      
     
-      //find by name
+      //find by name working
       router.get("/:name", (req, res) => {
         User.findAll({where:{name:req.params.name}}).then((data)=>{res.send(data)})
         .catch((error)=>console.log(error));
