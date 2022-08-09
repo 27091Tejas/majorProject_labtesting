@@ -99,7 +99,7 @@ const User = sequelize.define("user", {
 
       //save user working
       router.post("/addUser", (req, res) => {
-        User.create(req.body).then((response)=>{res.send("user created")})
+        User.create(req.body).then((response)=>{res.json("user created")})
         .catch((error)=>console.log(error));
       });
 
@@ -107,13 +107,13 @@ const User = sequelize.define("user", {
       //save labtest working
 
       router.post("/addtest",(req,res)=>{
-        Tests.create(req.body).then((response)=>{res.send("test uploaded")})
+        Tests.create(req.body).then((response)=>{res.json("test uploaded")})
         .catch((error)=>console.log(error));
       });
            
       //save appoint working
       router.post("/appo",(req,res)=>{
-        Appointment.create(req.body).then((response)=>{res.send("appointment booked")})
+        Appointment.create(req.body).then((response)=>{res.json("appointment booked")})
         .catch((error)=>console.log(error));
       });
 
@@ -195,7 +195,7 @@ const User = sequelize.define("user", {
         {
             if(err) console.log(err);    
             
-            res.send({
+            res.json({
                 message:"Data Updated Successfully!!"
             })
         
@@ -221,7 +221,7 @@ const User = sequelize.define("user", {
       {
           if(err) console.log(err);    
           
-          res.send({
+          res.json({
               message:"Data Updated Successfully!!"
           })
       
@@ -249,7 +249,7 @@ const User = sequelize.define("user", {
         {
             if(err) console.log(err);    
             
-            res.send({
+            res.json({
                 message:"Data Updated Successfully!!"
             })
         
@@ -257,6 +257,37 @@ const User = sequelize.define("user", {
         })
     
     })
+
+    //update password
+
+    //update Appointments working
+    router.put('/changePass',(req,res)=>{
+
+      console.log(req.body);       
+      
+      let eamil = req.body.email;
+      let password = req.body.password;
+      let newPasssword=req.body
+      let Appointment_date=req.body.Appointment_date;
+      
+     
+      let query = `UPDATE appointments 
+                   SET description='${description}',userId='${userId}',Appointment_date='${Appointment_date}'
+                   WHERE id=${gID}`;
+  
+      db.query(query,(err,result)=>
+      {
+          if(err) console.log(err);    
+          
+          res.json({
+              message:"Data Updated Successfully!!"
+          })
+      
+      
+      })
+  
+  })
+
 
     //get single data
     router.post('/loginuser',(req,res)=>
@@ -279,7 +310,7 @@ const User = sequelize.define("user", {
             );
         }
         else{
-            res.send({
+            res.json({
                 message:"Data not found"
             })
         }
