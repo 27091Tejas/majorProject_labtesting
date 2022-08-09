@@ -3,11 +3,20 @@ const Sequelize = require("sequelize");
 const router = require("express").Router();
 const {response} = require('express');
 const cors = require("cors");
+const mysql=require('mysql2');
+
 const sequelize = new Sequelize("labtest","root", "root1", {
   host: "localhost",
   dialect: "mysql",
 });
-
+const db = mysql.createConnection
+({
+    host:'localhost',
+    user:'root',
+    password:'root1',
+    database:'labtest',
+    // port:3306
+})
 
 //User table
 
@@ -38,7 +47,7 @@ const User = sequelize.define("user", {
     // test table 
        const Tests = sequelize.define("labtests",
        {
-        testId:{
+        id:{
           type: Sequelize.INTEGER,
           primaryKey:true,
           autoIncrement:true
@@ -54,7 +63,7 @@ const User = sequelize.define("user", {
 
     //appointment table;
     const Appointment = sequelize.define("appointment", {
-      appointmentid: {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey:true,
         autoIncrement:true
@@ -137,7 +146,7 @@ const User = sequelize.define("user", {
         .catch((error)=>console.log(error));
       });
 
-       //find by testNAme working
+       //find by testNAme
       router.get("/testname/:name", (req, res) => {
         Tests.findAll({where:{testName:req.params.name}}).then((data)=>{res.send(data)})
         .catch((error)=>console.log(error));
@@ -159,29 +168,118 @@ const User = sequelize.define("user", {
         .catch((error)=>console.log(error));
       });
        
-     
+
 
       //find by id appointment working
       router.get("/byappoId/:id", (req, res) => {
-        Tests.findByPk(req.params.id).then((data)=>{res.send(data)})
+        Appointment.findByPk(req.params.id).then((data)=>{res.send(data)})
         .catch((error)=>console.log(error));
       });
-
-      //update
+               
+      //update user
       router.put("/update/:id", (req, res) => {
         User.update(req.body,req.params.id).then((data)=>{res.send(data)})
         .catch((error)=>console.log(error));
       });
       
-      //delete
+      //update test
+      // router.put("/updatetest/:id", (req, res) => {
+      //   Tests.update(req.body,req.params.id).then((data)=>{res.send(data)})
+      //   .catch((error)=>console.log(error));
+      // });
+      // router.put("/updatetest/:id", (req, res) => {
+      //   Tests.update(req.body, req.params.id,{
+      //     where: { id: req.params.id }
+      //   }).then((data)=>{res.send(data)})
+      //   .catch((error)=>console.log(error));
+          
+      
+      // });
+       
+
+      router.put('/user/:id',(req,res)=>{
+
+        console.log(req.body);       
+        let gID= req.params.id;
+        let fullname = req.body.name;
+        let email = req.body.email;
+        let mobile = req.body.contact_no;
+        let password=req.body.password;
+       
+        let query = `UPDATE users 
+                     SET name='${fullname}',email='${email}',contact_no='${mobile}',password='${password}'
+                     WHERE id=${gID}`;
+    
+        db.query(query,(err,result)=>
+        {
+            if(err) console.log(err);    
+            
+            res.send({
+                message:"Data Updated Successfully!!"
+            })
+        
+        
+        })
+    
+    })
+
+
+      //update Appointments
+      router.put("/updateappo/:id", (req, res) => {
+        Tests.update(req.body,req.params.id).then((data)=>{res.send(data)})
+        .catch((error)=>console.log(error));
+      });
+
+      
+      //delete working
       router.delete("/delete/:id", (req, res) => {
         User.destroy({where : {id:req.params.id}}).then((response)=>{res.send("user deleted")})
         .catch((error)=>console.log(error));
       });
 
-      //custom query
+
+      //delete test working
+      
+      router.delete("/deletetest/:id", (req, res) => {
+        Tests.destroy({where : {id:req.params.id}}).then((response)=>{res.send("test deleted")})
+        .catch((error)=>console.log(error));
+      });
+        
+
+      // delete appointment working
+
+      
+      router.delete("/deleteappo/:id", (req, res) => {
+        Appointment.destroy({where : {id:req.params.id}}).then((response)=>{res.send("appointment deleted ")})
+        .catch((error)=>console.log(error));
+      });
+
+      //
       router.get("/getUsers", (req, res) => {sequalize.query("select * from users",
       {type:sequelize.QueryTypes.SELECT}).then((data)=>{res.send(data)})
       .catch((error)=>console.log(error));})
+
+//       router.patch('/update',(req,res,next)=>
+// {
+//     let users = req.body;
+//     let query = "update users set name=?,email=?,contact_no=?,password=? role=? where id=?";
+//     sequelize.query(query,[users.name,users.email,users.contact_no,users.password,users.id],(err,results)=>
+//     {
+//         if(!err)
+//         {
+//             if(results.affectedRows == 0)
+//             {
+//                 return res.status(404).json({message: "user id does not exists"});
+//             }
+//             return res.status(200).json({message: "user updated successfuly"});
+          
+//         }
+//         else
+//         {
+//             return res.status(500).json(err);
+//         }
+//     })
+// })
+
 
 module.exports = router;
