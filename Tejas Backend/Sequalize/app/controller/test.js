@@ -176,27 +176,8 @@ const User = sequelize.define("user", {
         .catch((error)=>console.log(error));
       });
                
-      //update user
-      router.put("/update/:id", (req, res) => {
-        User.update(req.body,req.params.id).then((data)=>{res.send(data)})
-        .catch((error)=>console.log(error));
-      });
+      //update user working
       
-      //update test
-      // router.put("/updatetest/:id", (req, res) => {
-      //   Tests.update(req.body,req.params.id).then((data)=>{res.send(data)})
-      //   .catch((error)=>console.log(error));
-      // });
-      // router.put("/updatetest/:id", (req, res) => {
-      //   Tests.update(req.body, req.params.id,{
-      //     where: { id: req.params.id }
-      //   }).then((data)=>{res.send(data)})
-      //   .catch((error)=>console.log(error));
-          
-      
-      // });
-       
-
       router.put('/user/:id',(req,res)=>{
 
         console.log(req.body);       
@@ -223,12 +204,118 @@ const User = sequelize.define("user", {
     
     })
 
+    //update test working
+    router.put('/updatelabtest/:id',(req,res)=>{
 
-      //update Appointments
-      router.put("/updateappo/:id", (req, res) => {
-        Tests.update(req.body,req.params.id).then((data)=>{res.send(data)})
-        .catch((error)=>console.log(error));
-      });
+      console.log(req.body);       
+      let gID= req.params.id;
+      let testName = req.body.testName;
+      let cost = req.body.costOfTest;
+      
+     
+      let query = `UPDATE labtests 
+                   SET testName='${testName}',costOfTest='${cost}'
+                   WHERE id=${gID}`;
+  
+      db.query(query,(err,result)=>
+      {
+          if(err) console.log(err);    
+          
+          res.send({
+              message:"Data Updated Successfully!!"
+          })
+      
+      
+      })
+  
+  })
+
+
+      //update Appointments working
+      router.put('/updateappointment/:id',(req,res)=>{
+
+        console.log(req.body);       
+        let gID= req.params.id;
+        let description = req.body.description;
+        let userId = req.body.userId;
+        let Appointment_date=req.body.Appointment_date;
+        
+       
+        let query = `UPDATE appointments 
+                     SET description='${description}',userId='${userId}',Appointment_date='${Appointment_date}'
+                     WHERE id=${gID}`;
+    
+        db.query(query,(err,result)=>
+        {
+            if(err) console.log(err);    
+            
+            res.send({
+                message:"Data Updated Successfully!!"
+            })
+        
+        
+        })
+    
+    })
+
+    //get single data
+    router.post('/loginuser',(req,res)=>
+{
+    let email= req.body.email;
+    let pass = req.body.password;
+    let query= `SELECT * FROM users WHERE email='${email}' and password='${pass}'`;
+
+    db.query(query,(err,result)=>
+    {
+        if(err)console.log(err);
+
+        if(result.length>0)
+        {
+            res.send(
+                {
+                    message:"Get Single Data",
+                    data: result
+                }
+            );
+        }
+        else{
+            res.send({
+                message:"Data not found"
+            })
+        }
+    })
+})
+
+
+//petients appointments
+
+
+router.get('/appointments/:id',(req,res)=>
+{
+    let id= req.params.id;
+   
+    let query= `SELECT * FROM appointments WHERE userId=${id} `;
+
+    db.query(query,(err,result)=>
+    {
+        if(err)console.log(err);
+
+        if(result.length>0)
+        {
+            res.send(
+                {
+                    message:"Get Single Data",
+                    data: result
+                }
+            );
+        }
+        else{
+            res.send({
+                message:"Data not found"
+            })
+        }
+    })
+})
 
       
       //delete working
