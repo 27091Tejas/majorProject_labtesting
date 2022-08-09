@@ -15,6 +15,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {HttpClientModule}  from '@angular/common/http'
 import { UserServicesService } from './services/user-services.service';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { AdminservicesService } from './services/adminservices.service';
 
 
 
@@ -35,9 +37,11 @@ import { UserServicesService } from './services/user-services.service';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [UserServicesService],
+  providers: [UserServicesService,AdminservicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

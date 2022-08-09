@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserServicesService {
+  
 
   constructor(private _http:HttpClient) { }
 
@@ -19,6 +20,12 @@ export class UserServicesService {
   getallData():Observable<any>
   {
     return this._http.get(`${this.apiUrl}`);
+  }
+
+  registerUser(data:any):Observable<any>
+  {
+    console.log(data,'registerUserapi==>');
+    return this._http.post(this.apiUrl+'addUser',data);
   }
 
 

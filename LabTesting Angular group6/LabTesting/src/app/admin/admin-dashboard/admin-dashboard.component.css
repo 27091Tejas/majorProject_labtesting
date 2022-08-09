@@ -138,3 +138,7 @@ img{
     text-transform: uppercase;
 }
 
+.table{
+    height:60vh;
+    margin-bottom: 4%;
+}

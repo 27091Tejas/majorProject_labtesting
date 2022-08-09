@@ -14,7 +14,7 @@
    .banner-area{
     position: relative;
     justify-content: center;
-    min-height: 10vh;
+    height: 10vh;
    background-color:#3f51b5;
     text-align: center;
     color:aliceblue;
@@ -113,6 +113,9 @@
 }
 
 @media(max-width:800px){
+    .banner-area{
+        height: 15vh;
+    }
 
     header{
         flex-direction: column;
@@ -126,7 +129,11 @@
     }
 }
 
-@media(max-width:400px){
+@media(max-width:540px){
+
+    .banner-area{
+        height: 15vh;
+    }
 
     header{
         flex-direction: column;
