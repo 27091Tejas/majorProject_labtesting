@@ -1,106 +1,49 @@
-<section class="admin_dashboard">
+<!-- <section class="admin_dashboard">
     <div class="title">Welcome To Admin Dashboard</div>
     <div class="container">
         <div class="team_container">
             <div class="text">Types of Tests</div>
         </div>
-        <div class="row">
+        <div *ngFor='let test of tests'>
+        <div class="row" >
+            
             <!--First User design starts here-->
-            <div class="profile-card">
+            <!-- <div class="profile-card">
                 <div class="profile-content">
-                    <div class="profile-image">
-                        <img src="../../../assets/images/girl1.jpg" alt="first user">
-                    </div>
+                    
                     <div class="desc">
-                        <h2>Sunmetecha</h2>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit. </p>
+                        <h2>{{test.testName}}</h2>
+                        <p>{{test.costOfTest}} </p>
                     </div>
                     <div class="btn-div">
                         <button class="btn"><i class="fa fa-facebook" style="padding-right: 10px;"></i>Edit</button>
                     </div>
                 </div>
             </div>
-            <!--First user design ends here-->
-             <!--second User design starts here-->
-             <div class="profile-card">
-                <div class="profile-content">
-                    <div class="profile-image">
-                        <img src="../../../assets/images/girl2.jpg" alt="first user">
-                    </div>
-                    <div class="desc">
-                        <h2>Sunmetecha</h2>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit. </p>
-                    </div>
-                    <div class="btn-div">
-                        <button class="btn"><i class="fa fa-facebook" style="padding-right: 10px;"></i>Follow</button>
-                    </div>
-                </div>
-            </div>
-            <!--second user design ends here-->
-             <!--third User design starts here-->
-             <div class="profile-card">
-                <div class="profile-content">
-                    <div class="profile-image">
-                        <img src="images/girl3.jpg" alt="first user">
-                    </div>
-                    <div class="desc">
-                        <h2>Sunmetecha</h2>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit. </p>
-                    </div>
-                    <div class="btn-div">
-                        <button class="btn"><i class="fa fa-facebook" style="padding-right: 10px;"></i>Follow</button>
-                    </div>
-                </div>
-            </div>
-            <!--third user design ends here-->
-             <!--fourth User design starts here-->
-             <div class="profile-card">
-                <div class="profile-content">
-                    <div class="profile-image">
-                        <img src="images/girl4.jpg" alt="first user">
-                    </div>
-                    <div class="desc">
-                        <h2>Sunmetecha</h2>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit. </p>
-                    </div>
-                    <div class="btn-div">
-                        <button class="btn"><i class="fa fa-facebook" style="padding-right: 10px;"></i>Follow</button>
-                    </div>
-                </div>
-            </div>
-            <!--fourth user design ends here-->
-             <!--Fifth User design starts here-->
-             <div class="profile-card">
-                <div class="profile-content">
-                    <div class="profile-image">
-                        <img src="images/girl5.jpg" alt="first user">
-                    </div>
-                    <div class="desc">
-                        <h2>Sunmetecha</h2>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit. </p>
-                    </div>
-                    <div class="btn-div">
-                        <button class="btn"><i class="fa fa-facebook" style="padding-right: 10px;"></i>Follow</button>
-                    </div>
-                </div>
-            </div>
-            <!--Fifth user design ends here-->
-             <!--six User design starts here-->
-             <div class="profile-card">
-                <div class="profile-content">
-                    <div class="profile-image">
-                        <img src="images/girl6.jpg" alt="first user">
-                    </div>
-                    <div class="desc">
-                        <h2>Sunmetecha</h2>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit. </p>
-                    </div>
-                    <div class="btn-div">
-                        <button class="btn"><i class="fa fa-facebook" style="padding-right: 10px;"></i>Follow</button>
-                    </div>
-                </div>
-            </div>
-            <!--six user design ends here-->
         </div>
+            
     </div>
-</section>
+</div>
+</section>  -->
+<div class="contaier mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">TestId</th>
+                <th scope="col">Test Name</th>
+                <th scope="col">Cost Of Test</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor='let test of tests'>
+            <th scope="row">{{test.id}}</th>
+            <td>{{test.testName}}</td>
+            <td>{{test.costOfTest}}</td>
+            <td></td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+

@@ -2,7 +2,7 @@ const express=require("express");
 const cors = require("cors");
 const app=express();
 app.use(express.json());//this should be at upper place always 
-
+app.use(cors());
 const router=require('./app/controller/test.js');
 app.use("/test",router);
 

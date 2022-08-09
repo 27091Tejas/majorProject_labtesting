@@ -90,7 +90,7 @@ const User = sequelize.define("user", {
 
       //save user working
       router.post("/addUser", (req, res) => {
-        User.create(req.body).then((response)=>{res.send("user created")})
+        User.create(req.body).then(()=>{res.json("user created")})
         .catch((error)=>console.log(error));
       });
 

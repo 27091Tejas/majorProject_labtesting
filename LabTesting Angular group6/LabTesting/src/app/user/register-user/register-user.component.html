@@ -4,17 +4,30 @@
       <mat-card-title>User Registration Form</mat-card-title>
       <mat-card-subtitle style="text-align: center;">Enter your Details</mat-card-subtitle>
     </mat-card-header>
-    <form #regform="ngForm"  class="regForm"   (ngSubmit)="getDetails()">
-      <input type="text" #asso_name="ngModel" name="asso_name" [(ngModel)]="name" required placeholder="Enter Name"><br>
-      <span *ngIf="asso_name.touched  && !asso_name.valid" style="color:red;">Name should not be empty!!</span><br>
-      <textarea cols="21" rows="7" #asso_address="ngModel" name="asso_add" [(ngModel)]="address" required placeholder="Enter Address here"></textarea><br>
-      <span *ngIf="asso_address.touched  && !asso_address.valid" style="color:red;">Address should not be empty!!</span><br>  
-      <input type="text" #asso_email="ngModel"name="asso_email" [(ngModel)]="email" required placeholder="Enter Email here"><br>
-      <span *ngIf="asso_email.touched  && !asso_email.valid" style="color:red;">Email should not be empty!!</span><br>
-      <input type="text" #asso_password="ngModel"name="asso_password" [(ngModel)]="password" required placeholder="Enter Password"><br>
-      <span *ngIf="asso_password.touched  && !asso_password.valid" style="color:red;">password should not be empty!!</span><br>
-      <input type="text" #asso_confirmPassword="ngModel"name="asso_confirmPassword" [(ngModel)]="confirmPassword" required placeholder="Confirm Password"><br>
-      <span *ngIf="asso_confirmPassword.touched  && !asso_confirmPassword.valid" style="color:red;">password should not be empty!!</span><br>
+    <!-- Errmsg -->
+    <div *ngIf="errormsg" class="alert alert-warning alert-dismissible fade show" style="width: fit-content;"role="alert">
+      <strong>{{errormsg}}</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      </button>
+    </div>
+     <!-- success -->
+     <div *ngIf="successmsg" class="alert alert-success alert-dismissible fade show" style="width: fit-content;"role="alert">
+      <strong>{{successmsg}}</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      </button>
+    </div>
+    <form class="regForm" [formGroup]="userForm"   (ngSubmit)="RegisterUser()">
+      <input type="text"  formControlName="name" required placeholder="Enter Name"><br>
+      
+      <input  type="text" formControlName="contact_no"  placeholder="Enter contact number here"><br>
+      
+      <input type="text"  formControlName="email"  placeholder="Enter Email here"><br>
+     
+      <input type="password"  formControlName="password"  placeholder="Enter Password" style=""><br>
+      <input type="text"  formControlName="role"  style="display:none;"><br>
+      
+      <!-- <input type="text" #asso_confirmPassword="ngModel"name="asso_confirmPassword" [(ngModel)]="confirmPassword" required placeholder="Confirm Password"><br>
+      <span *ngIf="asso_confirmPassword.touched  && !asso_confirmPassword.valid" style="color:red;">password should not be empty!!</span><br> -->
         <button mat-raised-button color="primary">Register</button>
         
     </form>
