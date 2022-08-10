@@ -11,6 +11,12 @@ import { RouterModule } from '@angular/router';
 import { UserModule } from './user/user.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {HttpClientModule}  from '@angular/common/http'
+import { UserServicesService } from './services/user-services.service';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { AdminservicesService } from './services/adminservices.service';
 
 
 
@@ -28,9 +34,14 @@ import { HomeComponent } from './home/home.component';
     AdminModule,
     RouterModule,
     UserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [UserServicesService,AdminservicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

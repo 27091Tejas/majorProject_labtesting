@@ -3,12 +3,15 @@ const Sequelize = require("sequelize");
 const router = require("express").Router();
 const {response} = require('express');
 const cors = require("cors");
+
 const mysql=require('mysql2');
+
 
 const sequelize = new Sequelize("labtest","root", "root1", {
   host: "localhost",
   dialect: "mysql",
 });
+
 const db = mysql.createConnection
 ({
     host:'localhost',
@@ -17,6 +20,7 @@ const db = mysql.createConnection
     database:'labtest',
     // port:3306
 })
+
 
 //User table
 
@@ -46,8 +50,11 @@ const User = sequelize.define("user", {
   
     // test table 
        const Tests = sequelize.define("labtests",
-       {
+
         id:{
+
+        testId:{
+
           type: Sequelize.INTEGER,
           primaryKey:true,
           autoIncrement:true
@@ -62,8 +69,11 @@ const User = sequelize.define("user", {
 
 
     //appointment table;
-    const Appointment = sequelize.define("appointment", {
+    const Appointment = sequelize.define("appointment", 
       id: {
+
+      appointmentid: {
+
         type: Sequelize.INTEGER,
         primaryKey:true,
         autoIncrement:true
@@ -99,7 +109,11 @@ const User = sequelize.define("user", {
 
       //save user working
       router.post("/addUser", (req, res) => {
+
         User.create(req.body).then((response)=>{res.json("user created")})
+
+        User.create(req.body).then(()=>{res.json("user created")})
+
         .catch((error)=>console.log(error));
       });
 
@@ -107,13 +121,20 @@ const User = sequelize.define("user", {
       //save labtest working
 
       router.post("/addtest",(req,res)=>{
+
         Tests.create(req.body).then((response)=>{res.json("test uploaded")})
+        Tests.create(req.body).then((response)=>{res.send("test uploaded")})
+
         .catch((error)=>console.log(error));
       });
            
       //save appoint working
       router.post("/appo",(req,res)=>{
+
         Appointment.create(req.body).then((response)=>{res.json("appointment booked")})
+
+        Appointment.create(req.body).then((response)=>{res.send("appointment booked")})
+
         .catch((error)=>console.log(error));
       });
 
@@ -147,6 +168,9 @@ const User = sequelize.define("user", {
       });
 
        //find by testNAme
+
+       //find by testNAme working
+
       router.get("/testname/:name", (req, res) => {
         Tests.findAll({where:{testName:req.params.name}}).then((data)=>{res.send(data)})
         .catch((error)=>console.log(error));
@@ -168,6 +192,7 @@ const User = sequelize.define("user", {
         .catch((error)=>console.log(error));
       });
        
+
 
 
       //find by id appointment working
@@ -373,9 +398,33 @@ router.get('/appointments/:id',(req,res)=>
       });
 
       //
+
+     
+
+      //find by id appointment
+      router.get("/byappoId/:id", (req, res) => {
+        Tests.findByPk(req.params.id).then((data)=>{res.send(data)})
+        .catch((error)=>console.log(error));
+      });
+
+      //update
+      router.put("/update/:id", (req, res) => {
+        User.update(req.body,req.params.id).then((data)=>{res.send(data)})
+        .catch((error)=>console.log(error));
+      });
+      
+      //delete
+      router.delete("/delete/:id", (req, res) => {
+        User.destroy({where : {id:req.params.id}}).then((response)=>{res.send("user deleted")})
+        .catch((error)=>console.log(error));
+      });
+
+      //custom query
+
       router.get("/getUsers", (req, res) => {sequalize.query("select * from users",
       {type:sequelize.QueryTypes.SELECT}).then((data)=>{res.send(data)})
       .catch((error)=>console.log(error));})
+
 
 //       router.patch('/update',(req,res,next)=>
 // {
@@ -398,6 +447,8 @@ router.get('/appointments/:id',(req,res)=>
 //         }
 //     })
 // })
+
+
 
 
 module.exports = router;

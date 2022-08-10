@@ -1,0 +1,49 @@
+<!-- <section class="admin_dashboard">
+    <div class="title">Welcome To Admin Dashboard</div>
+    <div class="container">
+        <div class="team_container">
+            <div class="text">Types of Tests</div>
+        </div>
+        <div *ngFor='let test of tests'>
+        <div class="row" >
+            
+            <!--First User design starts here-->
+            <!-- <div class="profile-card">
+                <div class="profile-content">
+                    
+                    <div class="desc">
+                        <h2>{{test.testName}}</h2>
+                        <p>{{test.costOfTest}} </p>
+                    </div>
+                    <div class="btn-div">
+                        <button class="btn"><i class="fa fa-facebook" style="padding-right: 10px;"></i>Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+    </div>
+</div>
+</section>  -->
+<div class="contaier mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">TestId</th>
+                <th scope="col">Test Name</th>
+                <th scope="col">Cost Of Test</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor='let test of tests'>
+            <th scope="row">{{test.id}}</th>
+            <td>{{test.testName}}</td>
+            <td>{{test.costOfTest}}</td>
+            <td></td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+
